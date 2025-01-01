@@ -90,6 +90,8 @@ public class WeatherReportDTO {
     }
 
     public static WeatherReportDTO fromDay(Day day) {
+        String weather = day.getWeather() == null || day.getWeather().isEmpty() ? "UNKNOWN" : day.getWeather().get(0).getMain();
+
         return new WeatherReportDTO(
             day.getDt(),
             day.getSummary(),
@@ -98,7 +100,7 @@ public class WeatherReportDTO {
             day.getPressure(),
             day.getHumidity(),
             day.getWind_speed(),
-            day.getWeather().get(0).getMain()
+            weather
         );
     }
 
